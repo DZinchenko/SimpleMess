@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleMess.MainPage">
+
+    <StackLayout x:Name="MainLayout"
+                 Spacing="0">
+        <StackLayout Orientation="Horizontal"
+                     BackgroundColor="SteelBlue"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Start"
+                     HeightRequest="60">
+            <Button Text="Back" 
+                    Clicked="BackBtn_Clicked"
+                    HeightRequest="20"
+                    VerticalOptions="Fill"/>
+        </StackLayout>
+        <ScrollView>
+            <StackLayout x:Name="ChatsView"
+                         Spacing="0">
+                <Frame BackgroundColor="Aqua"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Start"
+                   HeightRequest="80"
+                   BorderColor="Black"
+                   Padding="1">
+                    <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Fill"
+                             VerticalOptions="Fill"
+                             BackgroundColor="WhiteSmoke"
+                             Padding="10">
+                        <Frame HeightRequest="60"
+                           WidthRequest="60"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           Padding="0"
+                           CornerRadius="20"
+                           IsClippedToBounds="True">
+                            <Image HeightRequest="60"
+                               WidthRequest="60"
+                               Aspect="AspectFill"/>
+                        </Frame>
+                        <StackLayout Spacing="5">
+                            <Label Text="Chatik"
+                                   TextColor="Black"
+                                   FontSize="18"/>
+                            <Label Text="Chelik: Dorou"
+                                   TextColor="Gray"
+                                   FontSize="17"/>
+                        </StackLayout>
+                        <Frame Padding="0"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           CornerRadius="10"
+                           HorizontalOptions="EndAndExpand"
+                           VerticalOptions="Center"
+                           BackgroundColor="IndianRed">
+                            <Label FontSize="14"
+                               TextColor="White"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="2"/>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>

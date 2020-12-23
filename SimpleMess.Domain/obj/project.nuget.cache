@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "WSGbqwgiMLb7lH+HsR5uDs8e2jBX15ctoxmlKG+7ZsXd+9+buIP+fsZ1Ube7232NNFa1nF2ytp5e7ciuBdca+Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zinda\\Desktop\\SimpleMess\\SimpleMess.Domain\\SimpleMess.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zinda\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\zinda\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\bin\Debug\netstandard2.0\SimpleMess.OuterEF.deps.json
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\bin\Debug\netstandard2.0\SimpleMess.OuterEF.dll
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\bin\Debug\netstandard2.0\SimpleMess.OuterEF.pdb
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\bin\Debug\netstandard2.0\SimpleMess.Data.dll
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\bin\Debug\netstandard2.0\SimpleMess.Data.pdb
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.csprojAssemblyReference.cache
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.AssemblyInfoInputs.cache
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.AssemblyInfo.cs
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.csproj.CoreCompileInputs.cache
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.csproj.CopyComplete
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.dll
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.OuterEF\obj\Debug\netstandard2.0\SimpleMess.OuterEF.pdb

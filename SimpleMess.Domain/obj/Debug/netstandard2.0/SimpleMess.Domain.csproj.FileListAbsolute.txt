@@ -1,0 +1,12 @@
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\bin\Debug\netstandard2.0\SimpleMess.Domain.deps.json
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\bin\Debug\netstandard2.0\SimpleMess.Domain.dll
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\bin\Debug\netstandard2.0\SimpleMess.Domain.pdb
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\bin\Debug\netstandard2.0\SimpleMess.Data.dll
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\bin\Debug\netstandard2.0\SimpleMess.Data.pdb
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.csprojAssemblyReference.cache
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.AssemblyInfoInputs.cache
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.AssemblyInfo.cs
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.csproj.CoreCompileInputs.cache
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.csproj.CopyComplete
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.dll
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess.Domain\obj\Debug\netstandard2.0\SimpleMess.Domain.pdb

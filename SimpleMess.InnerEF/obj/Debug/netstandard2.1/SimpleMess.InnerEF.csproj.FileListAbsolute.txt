@@ -1,0 +1,4 @@
+C:\Users\zinda\Desktop\лабки\TRPZ\SimpleMess\SimpleMess.InnerEF\bin\Debug\netstandard2.1\SimpleMess.Data.dll
+C:\Users\zinda\Desktop\лабки\TRPZ\SimpleMess\SimpleMess.InnerEF\obj\Debug\netstandard2.1\SimpleMess.InnerEF.csprojAssemblyReference.cache
+C:\Users\zinda\Desktop\лабки\TRPZ\SimpleMess\SimpleMess.InnerEF\obj\Debug\netstandard2.1\SimpleMess.InnerEF.AssemblyInfoInputs.cache
+C:\Users\zinda\Desktop\лабки\TRPZ\SimpleMess\SimpleMess.InnerEF\obj\Debug\netstandard2.1\SimpleMess.InnerEF.AssemblyInfo.cs

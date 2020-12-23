@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleMess.LoginPage">
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="SteelBlue">
+            <StackLayout AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds=".5,.4,.87,.3"
+                         BackgroundColor="SteelBlue">
+                <Label Text="Log In"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="25"/>
+
+                <Frame CornerRadius="25"
+                       BorderColor="Black"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       WidthRequest="350"
+                       Padding="2"
+                       BackgroundColor="LightSteelBlue">
+                    <Entry x:Name="UsernameEntry"
+                           Placeholder="Username"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           WidthRequest="300"
+                           TextColor="Black"/>
+                </Frame>
+
+                <Frame CornerRadius="25"
+                       BorderColor="Black"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       WidthRequest="350"
+                       Padding="2"
+                       BackgroundColor="LightSteelBlue">
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Password"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           WidthRequest="300"
+                           IsPassword="True"
+                           TextColor="Black"/>
+                </Frame>
+                
+                <StackLayout Orientation="Horizontal"
+                             WidthRequest="350">
+                    <Button x:Name="RegisterBtn"
+                            Clicked="RegisterBtn_Clicked"
+                            BackgroundColor="LightSteelBlue"
+                            WidthRequest="150"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            CornerRadius="25"
+                            Text="Register" 
+                            FontSize="17"
+                            TextColor="Black"/>
+                    
+                    <Button x:Name="LogInBtn"
+                            Clicked="LogInBtn_Clicked"
+                            BackgroundColor="LightSteelBlue"
+                            WidthRequest="190"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            CornerRadius="25"
+                            Text="Log in"
+                            FontSize="17"
+                            TextColor="Black"
+                            HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                
+            </StackLayout>
+
+            <Frame x:Name="ErrorLabelFrame"
+                   IsVisible="False"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds=".5,.8,.87,.1"
+                   BackgroundColor="LightSkyBlue"
+                   CornerRadius="25"
+                   BorderColor="Black">
+                <Label x:Name="ErrorLabel"
+                       TextColor="Red"
+                       FontSize="17"/>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
