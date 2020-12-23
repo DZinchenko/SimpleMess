@@ -8,7 +8,7 @@ using SimpleMess.Data.ExternalRepositories;
 
 namespace SimpleMess.OuterEF.Repositories
 {
-    class ExternalUserRepo : IExternalUserRepo
+    public class ExternalUserRepo : IExternalUserRepo
     {
         public void CreateUser(User user)
         {

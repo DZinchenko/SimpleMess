@@ -8,7 +8,7 @@ using SimpleMess.Data.InternalRepositories;
 
 namespace SimpleMess.InnerEF.Repositories
 {
-    public class InnerUserRepository : IInternalUserRepo
+    public class InternalUserRepo : IInternalUserRepo
     {
         public void CreateUser(User user)
         {

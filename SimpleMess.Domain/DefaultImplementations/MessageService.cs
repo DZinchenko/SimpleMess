@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SimpleMess.Domain.DefaultImplementations
 {
-    class MessageService : IMessageService
+    public class MessageService : IMessageService
     {
         private IExternalMessageRepo _extMsgRepo;
         private IInternalMessageRepo _intMsgRepo;

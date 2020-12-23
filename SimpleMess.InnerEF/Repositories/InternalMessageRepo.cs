@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace SimpleMess.InnerEF.Repositories
 {
-    class InnerMessageRepository : IInternalMessageRepo
+    public class InternalMessageRepo : IInternalMessageRepo
     {
         public void CreateMessage(Message message)
         {

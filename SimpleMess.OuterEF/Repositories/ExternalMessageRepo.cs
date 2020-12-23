@@ -8,7 +8,7 @@ using SimpleMess.Data.ExternalRepositories;
 
 namespace SimpleMess.OuterEF.Repositories
 {
-    class ExternalMessageRepo : IExternalMessageRepo
+    public class ExternalMessageRepo : IExternalMessageRepo
     {
         public void CreateMessage(Message message)
         {

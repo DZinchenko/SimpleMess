@@ -11,7 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SimpleMess.Domain.DefaultImplementations;
-using SimpleMess.Data.Repositories;
+using SimpleMess.Data.ExternalRepositories;
+using SimpleMess.Data.InternalRepositories;
 using SimpleMess.OuterEF;
 
 namespace SimpleMess.Droid
@@ -26,9 +27,19 @@ namespace SimpleMess.Droid
 
             Kernel.Bind<IUserService>().To<UserService>();
             Kernel.Bind<IChatService>().To<ChatService>();
+            Kernel.Bind<IMessageService>().To<MessageService>();
+            Kernel.Bind<IUpdateService>().To<UpdateService>();
 
-            Kernel.Bind<IUserRepository>().To<OuterEF.Repositories.OuterUserRepository>().WhenInjectedExactlyInto<RegistrationPage>();
-            //Kernel.Bind<IUserService>().To<UserService>();
+            Kernel.Bind<IExternalUserRepo>().To<OuterEF.Repositories.ExternalUserRepo>();
+            Kernel.Bind<IExternalChatRepo>().To<OuterEF.Repositories.ExternalChatRepo>();
+            Kernel.Bind<IExternalMessageRepo>().To<OuterEF.Repositories.ExternalMessageRepo>();
+
+            Kernel.Bind<IInternalUserRepo>().To<InnerEF.Repositories.InternalUserRepo>();
+            Kernel.Bind<IInternalChatRepo>().To<InnerEF.Repositories.InternalChatRepo>();
+            Kernel.Bind<IInternalMessageRepo>().To<InnerEF.Repositories.InternalMessageRepo>();
+
+
+            Kernel.Bind<IUserService>().To<UserService>();
         }
     }
 }

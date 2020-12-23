@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SimpleMess.InnerEF.Repositories
 {
-    public class CurrUserInfoRepository : IInternalCurrUserInfoRepo
+    public class CurrUserInfoRepo : IInternalCurrUserInfoRepo
     {
         public void CreateCurrUserInfo(CurrUserInfo currUserInfo)
         {

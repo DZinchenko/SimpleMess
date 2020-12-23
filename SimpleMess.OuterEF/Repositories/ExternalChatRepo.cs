@@ -8,7 +8,7 @@ using SimpleMess.Data.ExternalRepositories;
 
 namespace SimpleMess.OuterEF.Repositories
 {
-    class ExternalChatRepo : IExternalChatRepo
+    public class ExternalChatRepo : IExternalChatRepo
     {
         public void CreateChat(Chat chat)
         {

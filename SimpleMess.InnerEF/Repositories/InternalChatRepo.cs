@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace SimpleMess.InnerEF.Repositories
 {
-    class InnerChatRepository : IInternalChatRepo
+    public class InternalChatRepo : IInternalChatRepo
     {
         public void CreateChat(Chat chat)
         {
