@@ -19,43 +19,6 @@ namespace SimpleMess.OuterEF.Repositories
             }
         }
 
-        public void DeleteMessage(Message message)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Messages.Remove(message);
-                ctx.SaveChanges();
-            }
-        }
-
-        public void UpdateMessage(Message message)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Messages.Attach(message);
-                ctx.Entry(message).State = EntityState.Modified;
-                ctx.SaveChanges();
-            }
-        }
-
-        public void CreateMessages(List<Message> messages)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Messages.AddRange(messages);
-                ctx.SaveChanges();
-            }
-        }
-
-        public void DeleteMessages(List<Message> messages)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Messages.RemoveRange(messages);
-                ctx.SaveChanges();
-            }
-        }
-
         public void UpdateMessages(List<Message> messages)
         {
             using (var ctx = new OuterContext())

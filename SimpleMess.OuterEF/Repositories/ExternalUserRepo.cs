@@ -19,25 +19,6 @@ namespace SimpleMess.OuterEF.Repositories
             }
         }
 
-        public void UpdateUser(User user)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Users.Attach(user);
-                ctx.Entry(user).State = EntityState.Modified;
-                ctx.SaveChanges();
-            }
-        }
-
-        public void DeleteUser(User user)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Users.Remove(user);
-                ctx.SaveChanges();
-            }
-        }
-
         public User GetUserById(int id)
         {
             using (var ctx = new OuterContext())

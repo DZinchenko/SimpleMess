@@ -19,25 +19,6 @@ namespace SimpleMess.OuterEF.Repositories
             }
         }
 
-        public void DeleteChat(Chat chat)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Chats.Remove(chat);
-                ctx.SaveChanges();
-            }
-        }
-
-        public void UpdateChat(Chat chat)
-        {
-            using (var ctx = new OuterContext())
-            {
-                ctx.Chats.Attach(chat);
-                ctx.Entry(chat).State = EntityState.Modified;
-                ctx.SaveChanges();
-            }
-        }
-
         public Chat GetСhatById(int id)
         {
             using (var ctx = new OuterContext())

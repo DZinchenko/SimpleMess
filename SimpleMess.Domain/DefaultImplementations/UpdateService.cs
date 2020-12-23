@@ -48,6 +48,7 @@ namespace SimpleMess.Domain.DefaultImplementations
             var currUserInfo = _intCurrUserInfoRepo.GetCurrUserInfo();
             currUserInfo.LastUpdateTime = updateTime;
             var newMsgs = _extMsgRepo.GetNewMessages(currUserInfo.UserId, updateTime);
+            _intMsgRepo.CreateMessages(newMsgs);
 
             var newChats = new List<Chat>();
             foreach(int chatId in newMsgs.Select(msg => msg.ChatId).Distinct())
