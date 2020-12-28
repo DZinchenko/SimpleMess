@@ -8,6 +8,5 @@ namespace SimpleMess.Domain.Interfaces
     public interface IUserService
     {
         void Register(User user);
-        User LogIn(string username, string password);
     }
 }

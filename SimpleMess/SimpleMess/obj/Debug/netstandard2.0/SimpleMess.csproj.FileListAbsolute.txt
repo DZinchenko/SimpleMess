@@ -38,7 +38,7 @@ C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0
 C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0\SimpleMess.pdb
 C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0\LoginPage.xaml.g.cs
 C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0\RegistrationPage.xaml.g.cs
-C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0\CustomElements\View1.xaml.g.cs
 C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\bin\Debug\netstandard2.0\SimpleMess.Domain.dll
 C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\bin\Debug\netstandard2.0\SimpleMess.Domain.pdb
 C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0\ChatPage.xaml.g.cs
+C:\Users\zinda\Desktop\SimpleMess\SimpleMess\SimpleMess\obj\Debug\netstandard2.0\StartChatPage.xaml.g.cs

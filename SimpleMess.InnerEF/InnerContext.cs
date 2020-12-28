@@ -6,7 +6,7 @@ namespace SimpleMess.InnerEF
 {
     public class InnerContext : DbContext 
     {
-        private IDatabaseConfiguration _databaseConfig = new AndroidDatabaseConfiguration();
+        private IInnerDBConfig _DBConfig;
         
         public DbSet<User> Users { get; set; }
         public DbSet<Chat> Chats { get; set; }
@@ -22,7 +22,7 @@ namespace SimpleMess.InnerEF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={_databaseConfig.GetDatabasePath()}");
+            optionsBuilder.UseSqlite($"Filename={_DBConfig.GetInnerDBPath()}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

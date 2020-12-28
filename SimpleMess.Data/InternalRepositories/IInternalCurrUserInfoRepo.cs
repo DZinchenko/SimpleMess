@@ -9,7 +9,7 @@ namespace SimpleMess.Data.InternalRepositories
     {
         void CreateCurrUserInfo(CurrUserInfo currUserInfo);
         void UpdateCurrUserInfo(CurrUserInfo currUserInfo);
-        void DeleteCurrUserInfo(CurrUserInfo currUserInfo);
+        void DeleteCurrUserInfo();
         CurrUserInfo GetCurrUserInfo();
     }
 }

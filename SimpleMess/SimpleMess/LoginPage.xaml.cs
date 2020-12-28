@@ -1,4 +1,5 @@
-﻿using SimpleMess.Domain.Interfaces;
+﻿using SimpleMess.Data.InternalRepositories;
+using SimpleMess.Domain.Interfaces;
 using SimpleMess.InnerEF.Repositories;
 using System;
 using System.Collections.Generic;
@@ -13,25 +14,37 @@ namespace SimpleMess
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        IUserService _userService;
+        private IUserService _userService;
+        private IInternalCurrUserInfoRepo _currUserInfoRepo;
+        private IInternalUserRepo _intUserRepo;
+        private IPageFactory _pageFactory;
+        private IAuthorizationManager _authManager;
 
-        public LoginPage(IUserService userService)
+        public LoginPage(IUserService userService,
+                         IInternalCurrUserInfoRepo currUserInfoRepo,
+                         IInternalUserRepo intUserRepo,
+                         IPageFactory pageFactory,
+                         IAuthorizationManager authManager)
         {
             _userService = userService;
+            _currUserInfoRepo = currUserInfoRepo;
+            _intUserRepo = intUserRepo;
+            _pageFactory = pageFactory;
+            _authManager = authManager;
 
             InitializeComponent();
         }
 
         private void RegisterBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(DependencyService.Resolve<RegistrationPage>());
+            Navigation.PushModalAsync(_pageFactory.CreatePage<RegistrationPage>());
         }
 
         private void LogInBtn_Clicked(object sender, EventArgs e)
         {
             try
             {
-                App.CurrentUser = _userService.LogIn(UsernameEntry.Text, PasswordEntry.Text);
+                _authManager.AuthorizeUser(UsernameEntry.Text, PasswordEntry.Text);
                 Navigation.PushModalAsync(DependencyService.Resolve<MainPage>());
             }
             catch (ArgumentException ex)

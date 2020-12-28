@@ -7,6 +7,8 @@ namespace SimpleMess.Domain.Interfaces
 {
     public interface IChatService
     {
-        void StartChat(Chat chat);
+        void StartPrivateChat(User secondUser);
+        void StartGroupChat(List<User> users, string chatName, byte[] chatImage);
+        List<Chat> GetChatsWithMsgAfterTime(DateTime time);
     }
 }

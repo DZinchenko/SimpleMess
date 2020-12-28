@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Ninject;
+using Xamarin.Forms.Internals;
+using Xamarin.Forms;
 
 namespace SimpleMess.Droid
 {
@@ -24,8 +26,8 @@ namespace SimpleMess.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             NinjectDroid.RegisterServices();
-
-            LoadApplication(new App((Type)=>NinjectDroid.Kernel.Get(Type)));
+            DependencyResolver.ResolveUsing(Type => NinjectDroid.Kernel.Get(Type));
+            LoadApplication(DependencyService.Resolve<App>());
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

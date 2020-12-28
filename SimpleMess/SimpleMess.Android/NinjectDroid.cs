@@ -14,6 +14,8 @@ using SimpleMess.Domain.DefaultImplementations;
 using SimpleMess.Data.ExternalRepositories;
 using SimpleMess.Data.InternalRepositories;
 using SimpleMess.OuterEF;
+using SimpleMess.InnerEF;
+using SimpleMess.MainPageFunctionality;
 
 namespace SimpleMess.Droid
 {
@@ -38,8 +40,14 @@ namespace SimpleMess.Droid
             Kernel.Bind<IInternalChatRepo>().To<InnerEF.Repositories.InternalChatRepo>();
             Kernel.Bind<IInternalMessageRepo>().To<InnerEF.Repositories.InternalMessageRepo>();
 
+            Kernel.Bind<IPageFactory>().To<DefaultPageFactory>();
+            Kernel.Bind<IBuildChatShortcutStrategyFactory>().To<BuildChatShortcutStrategyFactory>();
 
-            Kernel.Bind<IUserService>().To<UserService>();
+            Kernel.Bind<IAuthorizationManager>().To<AuthorizationManager>();
+            Kernel.Bind<IChatManager>().To<ChatManager>().InSingletonScope();
+
+            Kernel.Bind<IOuterDBConfig>().To<AndroidOuterDBConfig>();
+            Kernel.Bind<IInnerDBConfig>().To<AndroidInnerDBConfig>();
         }
     }
 }

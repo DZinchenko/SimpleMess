@@ -78,8 +78,6 @@ namespace SimpleMess
                 Source = _avatar.Path,
             };
 
-            AvatarPickLayout.Children.RemoveAt(1);
-
             AvatarPickLayout.Children.Add(_avatarImage);
         }
     }

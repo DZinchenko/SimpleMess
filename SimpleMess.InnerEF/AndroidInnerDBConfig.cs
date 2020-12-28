@@ -5,14 +5,9 @@ using System.Text;
 
 namespace SimpleMess.InnerEF
 {
-    interface IDatabaseConfiguration
+    public class AndroidInnerDBConfig : IInnerDBConfig
     {
-        string GetDatabasePath();
-    }
-
-    class AndroidDatabaseConfiguration : IDatabaseConfiguration
-    {
-        public string GetDatabasePath()
+        public string GetInnerDBPath()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SimpleMess.db");
         }

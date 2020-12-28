@@ -21,7 +21,7 @@ namespace SimpleMess.InnerEF.Repositories
                 }
                 else
                 {
-                    throw new Exception("There is CurrUserInfo in repository. Only one instance of CurrUserInfo can exist");
+                    throw new ApplicationException("There is CurrUserInfo in repository. Only one instance of CurrUserInfo can exist");
                 }
             }
         }
@@ -36,11 +36,11 @@ namespace SimpleMess.InnerEF.Repositories
             }
         }
 
-        public void DeleteCurrUserInfo(CurrUserInfo currUserInfo)
+        public void DeleteCurrUserInfo()
         {
             using (var ctx = new InnerContext())
             {
-                ctx.CurrUserInfo.Remove(currUserInfo);
+                ctx.CurrUserInfo.Remove(GetCurrUserInfo());
                 ctx.SaveChanges();
             }
         }
@@ -49,7 +49,7 @@ namespace SimpleMess.InnerEF.Repositories
         {
             using (var ctx = new InnerContext())
             {
-                return ctx.CurrUserInfo.ToList().First();
+                return ctx.CurrUserInfo.ToList().FirstOrDefault();
             }
         }
     }

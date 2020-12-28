@@ -6,35 +6,53 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using SimpleMess.Data.InternalRepositories;
-using SimpleMess.InnerEF.Repositories;
 using SimpleMess.Data.Entities;
 using SimpleMess.Domain.Interfaces;
-using System.IO;
+using SimpleMess.ChatShortcutBuildStrategy;
 
 namespace SimpleMess
 {
     public partial class MainPage : ContentPage
     {
         private IInternalUserRepo _userRepo;
-        private IInternalChatRepo _chatRepo;
         private IInternalMessageRepo _msgRepo;
         private IChatService _chatServ;
+        private IPageFactory _pageFactory;
+        private IAuthorizationManager _authManager;
+        private IChatManager _chatManager;
+        private IBuildChatShortcutStrategyFactory _buildChatShortcutStrategyFactory;
 
         private Dictionary<Frame, Chat> _chatFrames;
+        private DateTime _lastUpdateTime;
 
         public MainPage(IInternalUserRepo userRepo,
-                        IInternalChatRepo chatRepo,
                         IInternalMessageRepo msgRepo,
-                        IChatService chatService)
+                        IChatService chatService,
+                        IPageFactory pageFactory,
+                        IAuthorizationManager authManager,
+                        IChatManager chatManager,
+                        IBuildChatShortcutStrategyFactory buildChatShortcutStrategyFactory)
         {
             _userRepo = userRepo;
-            _chatRepo = chatRepo;
             _msgRepo = msgRepo;
             _chatServ = chatService;
+            _pageFactory = pageFactory;
+            _authManager = authManager;
+            _chatManager = chatManager;
+            _buildChatShortcutStrategyFactory = buildChatShortcutStrategyFactory;
 
             InitializeComponent();
+            
             _chatFrames = new Dictionary<Frame, Chat>();
-            UpdatePage();
+            _lastUpdateTime = DateTime.MinValue;
+
+            Device.StartTimer(TimeSpan.FromSeconds(0.5), () =>
+            {
+                Device.BeginInvokeOnMainThread(
+                    () => UpdatePage()
+                    );
+                return Navigation.NavigationStack.Contains(this);
+            });
         }
 
         private void BackBtn_Clicked(object sender, EventArgs e)
@@ -44,54 +62,33 @@ namespace SimpleMess
 
         private void Chat_Clicked(object sender)
         {
-            App.CurrentChat = _chatFrames[(Frame)sender];
-            Navigation.PushAsync(DependencyService.Resolve<ChatPage>());
+            _chatManager.ActivateChat(_chatFrames[(Frame)sender]);
+            Navigation.PushAsync(_pageFactory.CreatePage<ChatPage>());
         }
 
         private void UpdatePage()
         {
-            ChatsView.Children.Clear();
-            foreach (var chat in _chatRepo.GetAllChatsForUser(App.CurrentUser.Id).OrderByDescending(chat => _msgRepo.GetMessagesInChat(chat.Id).Max(msg=>msg.Time)))
+            foreach(var chat in _chatServ.GetChatsWithMsgAfterTime(_lastUpdateTime))
             {
-                ShowChatFrame(chat);
+                var chatFrame = _chatFrames.Keys.FirstOrDefault(frame => _chatFrames[frame] == chat);
+                ChatsView.Children.Remove(chatFrame);
+                _chatFrames.Remove(chatFrame);
+
+                var newFrame = GetChatFrame(chat);
+                ChatsView.Children.Add(newFrame);
+                _chatFrames.Add(newFrame, chat);
             }
+
+            _lastUpdateTime = DateTime.Now;
         }
 
-        private void ShowChatFrame(Chat chat)
+        private Frame GetChatFrame(Chat chat)
         {
             var messages = _msgRepo.GetMessagesInChat(chat.Id);
-            ImageSource chatImageSource;
-            string chatName;
             string lastMsgText = "";
             string unseenMsgNumStr = "0";
 
-            if (chat.GetType() == typeof(GroupChat))
-            {
-                var groupChat = (GroupChat)chat;
-                if (groupChat.Picture != null)
-                {
-                    chatImageSource = ImageSource.FromStream(() => new MemoryStream(groupChat.Picture));
-                }
-                else
-                {
-                    chatImageSource = null;
-                }
-
-                chatName = groupChat.Name;
-            }
-            else
-            {
-                var secondUser = _userRepo.GetUserById(chat.UserChats.Select(uc => uc.UserId).Where(id => id != App.CurrentUser.Id).First());
-                if (secondUser.Photo != null)
-                {
-                    chatImageSource = ImageSource.FromStream(() => new MemoryStream(secondUser.Photo));
-                }
-                else
-                {
-                    chatImageSource = null;
-                }
-                chatName = secondUser.Username;
-            }
+            var chatShortcut = _buildChatShortcutStrategyFactory.Create(chat).ExtractChatShortcut(chat);
 
             if (_msgRepo.GetMessagesInChat(chat.Id).Count > 0)
             {
@@ -101,7 +98,7 @@ namespace SimpleMess
 
                 var unseenMsgNum = messages.Count((msg) =>
                     {
-                        if (!msg.UserSeenMessages.Select(usm => usm.UserId).Contains(App.CurrentUser.Id)) { return true; }
+                        if (!msg.UserSeenMessages.Select(usm => usm.UserId).Contains(_authManager.GetAuthorizedUser().Id)) { return true; }
                         else { return false; }
                     });
                 unseenMsgNumStr = unseenMsgNum.ToString();
@@ -137,7 +134,7 @@ namespace SimpleMess
                                 HeightRequest = 60,
                                 WidthRequest = 60,
                                 Aspect = Aspect.AspectFill,
-                                Source = chatImageSource
+                                Source = chatShortcut.ImageSource
                             }
                         },
                         new StackLayout
@@ -147,7 +144,7 @@ namespace SimpleMess
                             {
                                 new Label
                                 {
-                                    Text = chatName,
+                                    Text = chatShortcut.Name,
                                     FontSize = 18,
                                     TextColor=Color.Black
                                 },
@@ -184,8 +181,12 @@ namespace SimpleMess
 
             newChatFrame.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(Chat_Clicked)});
 
-            ChatsView.Children.Add(newChatFrame);
-            _chatFrames.Add(newChatFrame, chat);
+            return newChatFrame;
+        }
+
+        private void StartChatBtn_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(_pageFactory.CreatePage<StartChatPage>());
         }
     }
 }

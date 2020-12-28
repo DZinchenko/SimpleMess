@@ -7,43 +7,51 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SimpleMess.Data.Entities;
-using SimpleMess.Data.Repositories;
+using SimpleMess.Data.InternalRepositories;
 using SimpleMess.Domain.Interfaces;
+using SimpleMess.ChatShortcutBuildStrategy;
 
 namespace SimpleMess
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        private IChatRepository _chatRepo;
-        private IMessageRepository _msgRepo;
-        private IUserRepository _userRepo;
-        private IChatService _chatServ;
+        private IInternalMessageRepo _msgRepo;
+        private IInternalUserRepo _userRepo;
         private IMessageService _msgServ;
+        private IAuthorizationManager _authManager;
+        private IChatManager _chatManager;
+        private IBuildChatShortcutStrategyFactory _buildChatShortcutStrategyFactory;
 
         private Message _lastMsg;
 
-        public ChatPage(IChatRepository chatRepo,
-                        IMessageRepository msgRepo,
-                        IUserRepository userRepo,
-                        IChatService chatServ,
-                        IMessageService msgServ)
+        public ChatPage(IInternalMessageRepo msgRepo,
+                        IInternalUserRepo userRepo,
+                        IMessageService msgServ,
+                        IAuthorizationManager authManager,
+                        IChatManager chatManager,
+                        IBuildChatShortcutStrategyFactory buildChatShortcutStrategyFactory)
         {
-            _chatRepo = chatRepo;
             _msgRepo = msgRepo;
             _userRepo = userRepo;
-            _chatServ = chatServ;
             _msgServ = msgServ;
+            _authManager = authManager;
+            _chatManager = chatManager;
+            _buildChatShortcutStrategyFactory = buildChatShortcutStrategyFactory;
 
             InitializeComponent();
-            ShowMessages(_msgRepo.GetMessagesInChat(App.CurrentChat.Id));
+            ShowMessages(_msgRepo.GetMessagesInChat(_chatManager.GetActiveChat().Id));
+
+            var chatShortcut = _buildChatShortcutStrategyFactory.Create(_chatManager.GetActiveChat()).ExtractChatShortcut(_chatManager.GetActiveChat());
+            ChatNameLabel.Text = chatShortcut.Name;
+            ChatImage.Source = chatShortcut.ImageSource;
 
             Device.StartTimer(TimeSpan.FromSeconds(0.5), ()=>
                 {
                     Device.BeginInvokeOnMainThread(
-                        () => ShowMessages(_msgRepo.GetNewMessagesInChat(App.CurrentChat.Id, _lastMsg))
+                        () => ShowMessages(_msgRepo.GetNewMessagesInChat(_chatManager.GetActiveChat().Id, _lastMsg))
                         );
-                    return this.IsFocused;
+                    return Navigation.NavigationStack.Contains(this);
                 });
         }
 
@@ -55,7 +63,7 @@ namespace SimpleMess
                 {
                     Frame msgFrame;
 
-                    if (message.UserId == App.CurrentUser.Id)
+                    if (message.UserId == _authManager.GetAuthorizedUser().Id)
                     {
                         msgFrame = new Frame
                         {
@@ -130,7 +138,7 @@ namespace SimpleMess
                     _lastMsg = message;
                 }
 
-                _msgServ.UserSeenMessages(messages, App.CurrentUser);
+                _msgServ.UserSeenMessages(messages, _authManager.GetAuthorizedUser());
             }
         }
 
@@ -138,21 +146,21 @@ namespace SimpleMess
         {
             var newMessage = new Message
             {
-                ChatId = App.CurrentChat.Id,
+                ChatId = _chatManager.GetActiveChat().Id,
                 Text = MessageEntry.Text,
-                UserId = App.CurrentUser.Id,
+                UserId = _authManager.GetAuthorizedUser().Id,
                 Time = DateTime.Now,
             };
 
-            _msgServ.UserSeenMessages(new List<Message> { newMessage }, App.CurrentUser);
+            _msgServ.UserSeenMessages(new List<Message> { newMessage }, _authManager.GetAuthorizedUser());
 
             ShowMessages(new List<Message> { newMessage });
         }
 
         private void BackBtn_Clicked(object sender, EventArgs e)
         {
+            _chatManager.DeactivateChat();
             Navigation.PopModalAsync();
-            App.CurrentChat = null;
         }
     }
 }

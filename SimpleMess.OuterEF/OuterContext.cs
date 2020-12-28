@@ -6,7 +6,7 @@ namespace SimpleMess.OuterEF
 {
     public class OuterContext : DbContext
     {
-        private IDatabaseConfiguration _databaseConfig = new AndroidDatabaseConfiguration();
+        private IOuterDBConfig _DBConfig;
 
         public DbSet<User> Users { get; set; }
         public DbSet<Chat> Chats { get; set; }
@@ -16,7 +16,7 @@ namespace SimpleMess.OuterEF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_databaseConfig.GetConnectionString());
+            optionsBuilder.UseSqlServer(_DBConfig.GetOuterDBConnectionString());
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

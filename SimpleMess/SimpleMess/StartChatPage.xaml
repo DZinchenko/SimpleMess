@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleMess.StartChatPage">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Private Chat"
+                 BackgroundColor="LightBlue">
+        <StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Entry x:Name ="PrivateChatUserEntry"
+                       WidthRequest="300"
+                       Placeholder="Username"
+                       TextColor="Black"/>
+                <Button x:Name="PrivateChatUserSelectBtn"
+                        Text="Search"
+                        Clicked="PrivateChatUserSelectBtn_Clicked"/>
+            </StackLayout>
+            <Button x:Name="StartPrivateChatBtn"
+                    Clicked="StartPrivateChatBtn_Clicked"
+                    Text="Start Chat"/>
+        </StackLayout>
+    </ContentPage>
+    
+    <ContentPage Title="Group Chat"
+                 BackgroundColor="LightBlue">
+        <StackLayout Spacing ="0"
+                     Padding="5">
+            <Entry x:Name="ChatNameEntry" Placeholder="Chat name"/>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Entry x:Name ="GroupChatUserEntry"
+                       WidthRequest="300"
+                       Placeholder="Username"
+                       TextColor="Black"/>
+                <Button x:Name="GroupChatUserSelectBtn"
+                        Text="Search"
+                        Clicked="GroupChatUserSelectBtn_Clicked"/>
+            </StackLayout>
+            <Label Text="Added users:"
+                   TextColor="Black"
+                   VerticalOptions="Start"/>
+            <Frame BackgroundColor="LightSteelBlue"
+                   BorderColor="Black"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start"
+                   WidthRequest="300"
+                   HeightRequest="200">
+                <ScrollView>
+                    <StackLayout x:Name="AddedUsersLayout">
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+            <StackLayout x:Name="AvatarPickLayout"
+                             Orientation="Horizontal"
+                             WidthRequest="350">
+                <Button x:Name="PicturePickBtn"
+                            Clicked="PicturePickBtn_Clicked"
+                            WidthRequest="200" 
+                            VerticalOptions="Start"
+                            BackgroundColor="LightSteelBlue"
+                            TextColor="Black"
+                            Text="Pick an avatar"
+                            TextTransform="None"
+                            FontSize="20"
+                            CornerRadius="25"
+                            BorderColor="Black"
+                            BorderWidth="1"/>
+            </StackLayout>
+            <Button x:Name="StartGroupChatBtn"
+                    Clicked="StartGroupChatBtn_Clicked"
+                    Text="Start Chat"/>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

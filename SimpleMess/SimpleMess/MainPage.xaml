@@ -12,13 +12,20 @@
                      HeightRequest="60">
             <Button Text="Back" 
                     Clicked="BackBtn_Clicked"
+                    TextTransform="None"
+                    FontSize="18"
                     HeightRequest="20"
                     VerticalOptions="Fill"/>
+            <Button Text="Start new chat"
+                    Clicked="StartChatBtn_Clicked"
+                    TextTransform="None"
+                    FontSize="18"
+                    HorizontalOptions="EndAndExpand"/>
         </StackLayout>
         <ScrollView>
             <StackLayout x:Name="ChatsView"
                          Spacing="0">
-                <Frame BackgroundColor="Aqua"
+                <!--<Frame BackgroundColor="Aqua"
                    HorizontalOptions="Fill"
                    VerticalOptions="Start"
                    HeightRequest="80"
@@ -63,7 +70,7 @@
                                Text="2"/>
                         </Frame>
                     </StackLayout>
-                </Frame>
+                </Frame>-->
             </StackLayout>
         </ScrollView>
     </StackLayout>

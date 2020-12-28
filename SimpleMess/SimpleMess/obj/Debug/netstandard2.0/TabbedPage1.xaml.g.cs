@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("SimpleMess.CustomElements.View1.xaml", "CustomElements/View1.xaml", typeof(global::SimpleMess.CustomElements.View1))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("SimpleMess.TabbedPage1.xaml", "TabbedPage1.xaml", typeof(global::SimpleMess.TabbedPage1))]
 
-namespace SimpleMess.CustomElements {
+namespace SimpleMess {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("CustomElements\\View1.xaml")]
-    public partial class View1 : global::Xamarin.Forms.ContentView {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("TabbedPage1.xaml")]
+    public partial class TabbedPage1 : global::Xamarin.Forms.TabbedPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(View1));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(TabbedPage1));
         }
     }
 }

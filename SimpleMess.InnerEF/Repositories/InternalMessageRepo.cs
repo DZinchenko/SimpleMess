@@ -96,5 +96,21 @@ namespace SimpleMess.InnerEF.Repositories
                 ctx.SaveChanges();
             }
         }
+
+        public DateTime GetLastMessageTimeInChat(int chatId)
+        {
+            using (var ctx = new InnerContext())
+            {
+                var lastMessage = ctx.Messages.Where(msg => msg.ChatId == chatId).OrderBy(msg => msg.Time).Include(msg => msg.UserSeenMessages).FirstOrDefault();
+                if (lastMessage != null)
+                {
+                    return lastMessage.Time;
+                }
+                else
+                {
+                    return DateTime.MinValue;
+                }
+            }
+        }
     }
 }

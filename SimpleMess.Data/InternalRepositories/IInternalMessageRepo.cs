@@ -14,7 +14,8 @@ namespace SimpleMess.Data.InternalRepositories
         void DeleteMessages(List<Message> messages);
         void UpdateMessages(List<Message> messages);
         List<Message> GetMessagesInChat(int chatId);
-        Message GetLastMessageInChat(int chatId);
         List<Message> GetNewMessagesInChat(int chatId, Message lastMsg);
+        Message GetLastMessageInChat(int chatId);
+        DateTime GetLastMessageTimeInChat(int chatId);
     }
 }
