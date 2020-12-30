@@ -6,7 +6,7 @@ namespace SimpleMess.OuterEF
 {
     public class OuterContext : DbContext
     {
-        private IOuterDBConfig _DBConfig;
+        private IOuterDBConfig _DBConfig = new AndroidOuterDBConfig();
 
         public DbSet<User> Users { get; set; }
         public DbSet<Chat> Chats { get; set; }

@@ -6,7 +6,7 @@ namespace SimpleMess.InnerEF
 {
     public class InnerContext : DbContext 
     {
-        private IInnerDBConfig _DBConfig;
+        private IInnerDBConfig _DBConfig = new AndroidInnerDBConfig();
         
         public DbSet<User> Users { get; set; }
         public DbSet<Chat> Chats { get; set; }
@@ -34,6 +34,8 @@ namespace SimpleMess.InnerEF
             modelBuilder.Entity<UserSeenMessage>().HasOne(usm => usm.Message).WithMany(u => u.UserSeenMessages).HasForeignKey(usm => usm.MessageId);
 
             modelBuilder.Entity<User>().Ignore(u => u.Password);
+
+            modelBuilder.Entity<CurrUserInfo>().HasKey(cui => cui.UserId);
         }
     }
 }

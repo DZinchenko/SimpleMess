@@ -14,6 +14,8 @@ namespace SimpleMess.Domain.DefaultImplementations
         private IInternalUserRepo _intUserRepo;
         private IInternalCurrUserInfoRepo _currUserInfoRepo;
 
+        private User _currUser;
+
         public AuthorizationManager(IExternalUserRepo extUserRepo,
                                     IInternalUserRepo intUserRepo,
                                     IInternalCurrUserInfoRepo currUserInfoRepo)
@@ -26,23 +28,38 @@ namespace SimpleMess.Domain.DefaultImplementations
         public void AuthorizeUser(string login, string password)
         {
             var user = _extUserRepo.GetUserByUsername(login);
+
             if (user == null || user.Password != password)
             {
                 throw new ArgumentException("Invalid username or password");
             }
 
             _currUserInfoRepo.CreateCurrUserInfo(new CurrUserInfo { UserId = user.Id, LastUpdateTime = DateTime.MinValue });
+            _currUser = user;
             _intUserRepo.CreateUser(user);
         }
 
         public void DeauthorizeUser()
         {
+            _currUser = null;
             _currUserInfoRepo.DeleteCurrUserInfo();
         }
 
         public User GetAuthorizedUser()
         {
-            return _intUserRepo.GetUserById(_currUserInfoRepo.GetCurrUserInfo().UserId);
+            if (_currUser != null)
+            {
+                return _currUser;
+            }
+            else
+            {
+                var currUserInfo = _currUserInfoRepo.GetCurrUserInfo();
+                if (currUserInfo != null)
+                {
+                    _currUser = _intUserRepo.GetUserById(currUserInfo.UserId);
+                }
+                return _currUser;
+            }
         }
     }
 }
